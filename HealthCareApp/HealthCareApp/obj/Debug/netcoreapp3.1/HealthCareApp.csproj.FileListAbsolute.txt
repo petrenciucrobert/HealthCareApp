@@ -152,3 +152,5 @@ C:\Users\petrerob\Documents\GitHub\HealthCareApp\HealthCareApp\HealthCareApp\bin
 C:\Users\petrerob\Documents\GitHub\HealthCareApp\HealthCareApp\HealthCareApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\petrerob\Documents\GitHub\HealthCareApp\HealthCareApp\HealthCareApp\obj\Debug\netcoreapp3.1\HealthCareApp.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\petrerob\Documents\GitHub\HealthCareApp\HealthCareApp\HealthCareApp\obj\Debug\netcoreapp3.1\HealthCareApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\petrerob\Documents\GitHub\HealthCareApp\HealthCareApp\HealthCareApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_PacientLayout.cshtml.g.cs
+C:\Users\petrerob\Documents\GitHub\HealthCareApp\HealthCareApp\HealthCareApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_DoctorLayout.cshtml.g.cs

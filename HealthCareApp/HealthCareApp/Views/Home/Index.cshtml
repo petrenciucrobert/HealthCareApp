@@ -1,28 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+    <div class="center-screen" >
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+        </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
-
-<div class="container">
-    <div class="text-center">
-        <h1>LogIn As</h1>
-    </div>
-</div>
-
-<div class="container .pt-3">
-        <div class="row">
-            <div class="card col-sm-6">
-                <div class="card-body text-center">
-                    <a class="btn btn-dark" asp-controller="Pacient" asp-action="Index">Pacient</a>
-                </div>
+        <div class="container">
+            <div class="text-center">
+                <h1>LogIn As</h1>
             </div>
-            <div class="card col-sm-6">
-                <div class="card-body text-center">
-                    <a class="btn btn-dark" asp-controller="Doctor" asp-action="Index">Doctor</a>
+        </div>
+
+        <div class="container .pt-3">
+            <div class="row">
+                <div class="card col-sm-6">
+                    <div class="card-body text-center">
+                        <a class="btn btn-dark" asp-controller="Pacient" asp-action="Index">Pacient</a>
+                    </div>
+                </div>
+                <div class="card col-sm-6">
+                    <div class="card-body text-center">
+                        <a class="btn btn-dark" asp-controller="Doctor" asp-action="Index">Doctor</a>
+                    </div>
                 </div>
             </div>
         </div>
-</div>
+    </div>
