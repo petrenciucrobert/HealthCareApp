@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HealthCareApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Doctor")]
     public class DoctorController : Controller
     {
         public IActionResult Index()

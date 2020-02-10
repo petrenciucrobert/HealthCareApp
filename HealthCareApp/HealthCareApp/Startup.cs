@@ -32,7 +32,7 @@ namespace HealthCareApp
             //.AddEntityFrameworkStores<AppDbContext>();
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
-                options.Password.RequiredLength=4;
+                options.Password.RequiredLength = 4;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
