@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace HealthCareApp.Models
 { 
-    public interface IPacientRepository
+    public interface IPatientRepository
     {
-        IEnumerable<Pacient> AllPacients { get; }
-        Pacient GetPacientById(int pacientId);
+        IEnumerable<Patient> AllPatients { get; }
+        Patient GetPatientById(int PatientId);
     }
 }

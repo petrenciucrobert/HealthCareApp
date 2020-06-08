@@ -26,7 +26,10 @@ namespace HealthCareApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HealthCareAppDbConnection")));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HealthCareAppDbConnection"), builder =>
+            {
+                builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+            }));
 
             //services.AddDefaultIdentity<IdentityUser>()
             //.AddEntityFrameworkStores<AppDbContext>();
@@ -43,7 +46,7 @@ namespace HealthCareApp
 
 
 
-            services.AddScoped<IPacientRepository, PacientRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

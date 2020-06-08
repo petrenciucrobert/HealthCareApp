@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\petrerob\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\petrerob\\.nuget\\packages",
+      "C:\\Users\\Roby\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Roby\\.nuget\\packages",
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }

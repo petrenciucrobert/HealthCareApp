@@ -8,6 +8,6 @@ namespace HealthCareApp.ViewModels
 {
     public class HomeDetailsViewModel
     {
-        public Pacient Pacienti { get; set; }
+        public Patient Patienti { get; set; }
     }
 }

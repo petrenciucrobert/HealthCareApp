@@ -7,23 +7,23 @@ namespace HealthCareApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Pacients",
+                name: "Patients",
                 columns: table => new
                 {
-                    PacientId = table.Column<int>(nullable: false)
+                    PatientId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pacients", x => x.PacientId);
+                    table.PrimaryKey("PK_Patients", x => x.PatientId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Pacients");
+                name: "Patients");
         }
     }
 }

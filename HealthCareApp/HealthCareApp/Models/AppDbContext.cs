@@ -8,13 +8,21 @@ using System.Threading.Tasks;
 
 namespace HealthCareApp.Models
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
                 
         }
 
-        public DbSet<Pacient> Pacients { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Doctor>().ToTable("Doctors");
+            modelBuilder.Entity<Patient>().ToTable("Patients");
+
+        }
+
     }
 }

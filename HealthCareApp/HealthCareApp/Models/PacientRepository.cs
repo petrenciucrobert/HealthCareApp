@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 
 namespace HealthCareApp.Models
 {
-    public class PacientRepository : IPacientRepository
+    public class PatientRepository : IPatientRepository
     {
         private readonly AppDbContext _appDbContext;
-        public PacientRepository(AppDbContext appDbContext)
+        public PatientRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
-        public IEnumerable<Pacient> AllPacients
+        public IEnumerable<Patient> AllPatients
         {
             get
             {
-                return _appDbContext.Pacients;
+                return _appDbContext.Patients;
             }
         }
 
-        public Pacient GetPacientById(int pacientId)
+        public Patient GetPatientById(int PatientId)
         {
-            return _appDbContext.Pacients.FirstOrDefault(p => p.PacientId == pacientId);
+            return _appDbContext.Patients.FirstOrDefault(p => p.PatientId == PatientId);
         }
     }
 }

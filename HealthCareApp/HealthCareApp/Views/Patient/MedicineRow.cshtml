@@ -1,0 +1,39 @@
+﻿@model HealthCareApp.Models.PrescriptionDetail
+
+ <div class="form-group medicineRow">
+        <label class="col-md-2 control-label">
+            <label>Medication</label> <span class="required">*</span>
+        </label>
+        <div class="col-md-2">
+            <div>
+                @Html.DropDownListFor(model => model.MedicineId, new SelectList(ViewBag.Medicines, "Value", "Text"), new { style = "", @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div>
+                @Html.TextBoxFor(model => model.NoOfDays, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div>
+                @Html.DropDownListFor(model => model.WhenToTake, new List<SelectListItem>
+                                        {
+                                            new SelectListItem{ Text="1-1-1", Value = "1-1-1" },
+                                            new SelectListItem{ Text="1-0-1", Value = "1-0-1" },
+                                            new SelectListItem{ Text="0-0-1", Value = "0-0-1" },
+                                            new SelectListItem{ Text="0-1-0", Value = "0-1-0" },
+                                            new SelectListItem{ Text="1-0-0", Value = "1-0-0" },
+                                         }, "When to take", new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div>
+                @Html.CheckBoxFor(model => model.IsBeforeMeal, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="deleteRow"><i class="fa fa-trash-o fa-2x"></i></a>
+        </div>
+    </div>
+

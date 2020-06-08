@@ -20,9 +20,9 @@ namespace HealthCareApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HealthCareApp.Models.Pacient", b =>
+            modelBuilder.Entity("HealthCareApp.Models.Patient", b =>
                 {
-                    b.Property<int>("PacientId")
+                    b.Property<int>("PatientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -30,9 +30,9 @@ namespace HealthCareApp.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PacientId");
+                    b.HasKey("PatientId");
 
-                    b.ToTable("Pacients");
+                    b.ToTable("Patients");
                 });
 #pragma warning restore 612, 618
         }

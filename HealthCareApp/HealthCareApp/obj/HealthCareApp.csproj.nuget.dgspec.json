@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\petrerob\\Documents\\GitHub\\HealthCareApp\\HealthCareApp\\HealthCareApp\\HealthCareApp.csproj": {}
+    "E:\\HealthCareApp\\HealthCareApp\\HealthCareApp\\HealthCareApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\petrerob\\Documents\\GitHub\\HealthCareApp\\HealthCareApp\\HealthCareApp\\HealthCareApp.csproj": {
+    "E:\\HealthCareApp\\HealthCareApp\\HealthCareApp\\HealthCareApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\petrerob\\Documents\\GitHub\\HealthCareApp\\HealthCareApp\\HealthCareApp\\HealthCareApp.csproj",
+        "projectUniqueName": "E:\\HealthCareApp\\HealthCareApp\\HealthCareApp\\HealthCareApp.csproj",
         "projectName": "HealthCareApp",
-        "projectPath": "C:\\Users\\petrerob\\Documents\\GitHub\\HealthCareApp\\HealthCareApp\\HealthCareApp\\HealthCareApp.csproj",
-        "packagesPath": "C:\\Users\\petrerob\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\petrerob\\Documents\\GitHub\\HealthCareApp\\HealthCareApp\\HealthCareApp\\obj\\",
+        "projectPath": "E:\\HealthCareApp\\HealthCareApp\\HealthCareApp\\HealthCareApp.csproj",
+        "packagesPath": "C:\\Users\\Roby\\.nuget\\packages\\",
+        "outputPath": "E:\\HealthCareApp\\HealthCareApp\\HealthCareApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\petrerob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Roby\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -53,6 +53,10 @@
               "target": "Package",
               "version": "[3.1.1, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -63,9 +67,15 @@
               "target": "Package",
               "version": "[3.1.1, )"
             },
+            "Microsoft.TypeScript.MSBuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.8.3, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.3, )"
             }
           },
           "imports": [
