@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HealthCareApp.Models;
-using HealthCareApp.Areas.Identity.Pages.Account;
 using Microsoft.AspNetCore.Authorization;
 
 namespace HealthCareApp.Controllers

@@ -4,299 +4,230 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model HealthCareApp.ViewModels.PatientViewModel
 
-@*<h1>Details</h1>
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+               <div class="row">
+                   <div class="col-md-3">
+                       <div class="card card-primary card-outline">
+                           <div class="card-body box-profile">
+                               <h3 class="profile-username text-center">@Html.DisplayFor(model => model.PatientDetail.FullName)</h3>
 
-    <div>
-        <h4>Patient</h4>
-        <hr />
-        <dl class="row">
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.FirstName)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.MiddleName)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.MiddleName)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.LastName)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.LastName)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Email)
-            </dd>
+                               <p class="text-muted text-center">@Html.DisplayFor(model => model.PatientDetail.Email)</p>
 
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Phone)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.IsActive)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.IsActive)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.BirthDate)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Gender)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Gender)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.BloodGroup)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.BloodGroup)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Address)
-            </dd>
-        </dl>
-    </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.PatientId">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>*@
+                               <ul class="list-group list-group-unbordered mb-3">
+                                   <li class="list-group-item">
+                                       <b>@Html.DisplayNameFor(model => model.PatientDetail.Gender)</b>
+                                       <a class="float-right">@Html.DisplayFor(model => model.PatientDetail.Gender)</a>
+                                   </li>
+                                   <li class="list-group-item">
+                                       <b>@Html.DisplayNameFor(model => model.PatientDetail.BloodGroup)</b>
+                                       <a class="float-right">@Html.DisplayFor(model => model.PatientDetail.BloodGroup)</a>
+                                   </li>
+                                   <li class="list-group-item">
+                                       <b>@Html.DisplayNameFor(model => model.PatientDetail.BirthDate)</b>
+                                       <a class="float-right">@Html.DisplayFor(model => model.PatientDetail.BirthDate)</a>
+                                   </li>
+                               </ul>
+                           </div>
+                       </div>
 
-@model HealthCareApp.ViewModels.PatientCheckUpViewModel
-<section class="content-header">
-    <h1>Patient Checkup <small></small></h1>
-    <ol class="breadcrumb">
-        <li><a href="@Url.Action("", "SiteMap")"><i class="fa fa-home"></i> Home</a></li>
-        @*<li><a href="@Url.Action("Details", "Patient", routeValues:new {id = Model.PatientCheckup.PatientId})">Patient Detail</a></li>*@
-        <li class="active">@ViewBag.Heading</li>
-    </ol>
-</section>
-<section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box ">
-                <div class="box-header">
-                    <div class="message-box"></div>
-                </div>
-                <div class="box-body">
-                    @*@using (Ajax.BeginForm("Checkup", "", new AjaxOptions() { HttpMethod = "POST", OnBegin = "onBeginSubmit", UpdateTargetId = "divPageBody", OnSuccess = "onSuccess", OnFailure = "onFailure" }, new { @class = "form-horizontal" }))*@
-                    {
-                        @Html.AntiForgeryToken()
-                        <section>
-                            <h4 class="page-header">Checkup</h4>
-                            <div class="form-body" id="mainform">
-                                <!-- BEGIN FORM-->
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">
-                                        @Html.LabelFor(model => model.PatientCheckup.DoctorId)  <span class="required">*</span>
-                                        @Html.HiddenFor(model => model.PatientCheckup.PatientCheckupId)
-                                    </label>
-
-                                    <div class="col-md-4">
-                                        <div class="input-icon right">
-                                            @Html.DropDownListFor(model => model.PatientCheckup.DoctorId, new SelectList(Model.Doctors.AllDoctors(),"UserId", "FullName"), "-- Select Doctor --", new { style = "", @class = "form-control" })
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        @Html.ValidationMessageFor(model => model.PatientCheckup.DoctorId)
-                                    </div>
-                                </div>
-                                <div id="divFirstName" class="form-group">
-                                    <label class="col-md-2 control-label">@Html.LabelFor(model => model.PatientCheckup.Symptoms) <span class="required">*</span></label>
-                                    <div class="col-md-4">
-                                        <div>
-                                            @Html.TextAreaFor(model => model.PatientCheckup.Symptoms, new { @class = "form-control", @maxlength = "5000" })
-                                            @*@Html.HiddenFor(model => model.UserId)*@
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        @Html.ValidationMessageFor(model => model.PatientCheckup.Symptoms)
-                                    </div>
-
-                                </div>
-                                <div id="divMiddleName" class="form-group">
-                                    <label class="col-md-2 control-label">
-                                        @Html.LabelFor(model => model.PatientCheckup.Diagnosis) <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-4">
-                                        <div class="input-icon right">
-                                            @Html.TextAreaFor(model => model.PatientCheckup.Diagnosis, new { @class = "form-control", @maxlength = "5000" })
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        @Html.ValidationMessageFor(model => model.PatientCheckup.Diagnosis)
-                                    </div>
-                                </div>
-                                <div id="divEmail" class="form-group">
-                                    <label class="col-md-2 control-label">
-                                        @Html.LabelFor(model => model.PatientCheckup.CheckupDate)
-                                    </label>
-                                    <div class="col-md-4">
-                                        <div class="input-icon right">
-                                            @Html.TextBoxFor(model => model.PatientCheckup.CheckupDate, new { @class = "form-control", @maxlength = "50" })
-                                        </div>
-                                    </div>
-                                </div>
+                       <div class="card card-primary">
+                           <div class="card-header">
+                               <h3 class="card-title">Other Info</h3>
+                           </div>
+                           <div class="card-body">
+                               <strong><i class="fa fa-phone margin-r-5"></i> Contact</strong>
+                               <p class="text-muted">@Html.DisplayFor(model => model.PatientDetail.Phone)</p>
+                               <hr>
+                               <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
+                               <p class="text-muted">@Html.DisplayFor(model => model.PatientDetail.Address)</p>
                             </div>
-                        </section>
-                        <section>
-                            <h4 class="page-header">Prescription</h4>
-                            <div class="form-body" id="mainform">
-                                @*<div class="form-group">
-                                        <label class="col-md-2 control-label">
-                                            @Html.LabelFor(model => model.PatientCheckup.Prescription.TreatmentId)  <span class="required">*</span>
-                                            @Html.HiddenFor(model => model.PatientCheckup.Prescription.PrescriptionId)
-                                        </label>
+                       </div>
+                       </div>
+                                    <div class="col-md-9">
+                                        <div class="card">
+                                            <div class="card-header p-2">
+                                                <h3 class="card-title">Checkup History</h3>
+                                                <a title="Add new" class="btn btn-success float-right btn-sm" asp-controller="Patient" asp-action="CheckUp" asp-route-patientId="@Model.PatientDetail.PatientId"><i class="fa fa-plus"></i>  Add New Checkup </a>
 
-                                        <div class="col-md-4">
-                                            <div class="input-icon right">
-                                                @Html.DropDownListFor(model => model.PatientCheckup.Prescription.TreatmentId, new SelectList(Model.Treatments, "TreatmentId", "TreatmentName"), "-- Select Treatment --", new { style = "", @class = "form-control" })
+                                                @*<a title="Add new" class="btn btn-success pull-right btn-sm" href="@Url.Action("CheckUp", "Patient", routeValues: new { patientId = Model.PatientDetail.PatientId  })"><i class="fa fa-plus"></i>  Add New Checkup </a>*@
                                             </div>
+                                            <!-- /.box-header -->
+                                            <div class="card-body">
+                                                
+                                                <div class="tab-pane" id="timeline">
+                                                    <!-- The timeline -->
+                                                    
+                                                    @if (Model.CheckupHistoryList != null && Model.CheckupHistoryList.Count > 0)
+                                                    {
+                                                        <div class="timeline timeline-inverse">
+
+
+                                                            @foreach (var each in Model.CheckupHistoryList)
+                                                            {
+                                                                <!-- timeline time label -->
+                                                                <div class="time-label">
+                                                                    <span class="bg-red">
+                                                                        @(each.CheckupDate.HasValue ? each.CheckupDate.Value.ToString("dd MMM yyyy") : "")
+                                                                    </span>
+                                                                    @*<span class="bg-blue">
+                                                                        Doctor : @each.DoctorName
+                                                                    </span>*@
+                                                                    <span class="pull-right margin-r-10">
+                                                                        @*<a class="btn btn-primary btn-sm" href="@Url.Action("CheckUp", "Patient", routeValues: new { patientId = Model.PatientDetail.PatientId, checkupId = each.PatientCheckupId})"><i class="fa fa-pencil"></i></a>
+                                                                        <a class="btn btn-danger btn-sm detailRow" href="@Url.Action("Detail", "Patient", routeValues: new { Id = Model.PatientDetail.PatientId})" data-id="@each.PatientCheckupId"><i class="fa fa-trash-o"></i></a>*@
+
+                                                                    </span>
+                                                                </div>
+                                                                <!-- end timeline time label -->
+                                                                <!-- timeline item : Symptoms -->
+                                                                <div>
+                                                                    <i class="fas fa-user bg-info"></i>
+                                                                    <div class="timeline-item">
+                                                                       
+                                                                        <h3 class="timeline-header"><a>Symptoms</a></h3>
+                                                                        <div class="timeline-body">
+                                                                            @each.Symptoms
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END timeline item : Symptoms-->
+                                                                <!-- timeline item : Diagnosis-->
+                                                                <div>
+                                                                    <i class="fas fa-user bg-info"></i>
+                                                                    <div class="timeline-item">
+                                                                       
+                                                                        <h3 class="timeline-header">
+                                                                            <a>Diagnosis</a>
+                                                                        </h3>
+                                                                        <div class="timeline-body">
+                                                                            @each.Diagnosis
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- End timeline item : Diagnosis-->
+                                                                <!-- timeline item : Prescription-->
+                                                                @*if (each.Prescription != null)
+                                                                {
+                                                                    <div>
+                                                                        <i class="fa fa-flask bg-yellow"></i>
+                                                                        <div class="timeline-item">
+                                                                            <h3 class="timeline-header">
+                                                                                <a>Prescription</a>
+                                                                            </h3>
+                                                                            @if (each.Prescription.MedicineList != null && each.Prescription.MedicineList.Count > 0)
+                                                                            {
+                                                                                <div class="timeline-body">
+                                                                                    <table class="table">
+                                                                                        <tr>
+                                                                                            <th style="width: 10px">#</th>
+                                                                                            <th>Medicine</th>
+                                                                                            <th>No.Of Days</th>
+                                                                                            <th>When to Take</th>
+                                                                                            <th style="width: 100px">Before Meal?</th>
+                                                                                        </tr>
+                                                                                        @{
+                                                                                            int i = 0;
+                                                                                            foreach (var medicine in each.Prescription.MedicineList)
+                                                                                            {
+                                                                                                i = i + 1;
+
+                                                                                                <tr>
+                                                                                                    <td>@i.</td>
+                                                                                                    <td>@medicine.MedicineName</td>
+                                                                                                    <td>@medicine.NoOfDays</td>
+                                                                                                    <td>@medicine.WhenToTake</td>
+                                                                                                    <td>@(medicine.IsBeforeMeal ? "Yes" : "No")</td>
+                                                                                                </tr>
+                                                                                            }
+                                                                                        }
+                                                                                    </table>
+                                                                                </div>
+                                                                            }
+
+                                                                            <div class="timeline-body">
+                                                                                <b>Extra Note :</b> @each.Prescription.ExtraNotes
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                }*@
+                                                                <!-- End timeline item : Prescription-->
+                                                            }
+
+                                                            
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>No checkup history found</span>
+                                                    }
+
+
+                                                </div>
+                                            
+                                                </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            @Html.ValidationMessageFor(model => model.PatientCheckup.Prescription.TreatmentId)
+                                    </div>
+                                    <!-- /.col -->
+                                    @*<div class="form-actions">
+                                        <div class="row text-center">
+                                            <div class="col-md-12 ">
+                                                    <a class="btn btn-primary btn-flat" href="@Url.Action("Details", "Patient")"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;&nbsp;Back</a>
+                                                </div>
                                         </div>
                                     </div>*@
-                                <div class="form-group medicine-header">
-
-                                    <label class="col-md-2 control-label"></label>
-                                    <label class="col-md-2">Medicine</label>
-                                    <label class="col-md-2">No.of Days</label>
-                                    <label class="col-md-2">When to take</label>
-                                    <label class="col-md-2">Before Meal?</label>
-                                    <label class="col-md-2">Delete</label>
-                                </div>
-
-
-                                <div id="medicineRows">
-                                    @if (Model.PatientCheckup.Prescription != null && Model.PatientCheckup.Prescription.MedicineList != null)
-                                    {
-                                        foreach (var medicine in Model.PatientCheckup.Prescription.MedicineList)
-                                        {
-                                            //Html.RenderPartial("MedicineRow", medicine);
-                                            <partial name="MedicineRow" model="medicine"/>                                       
-                                            }
-                                    }
-                                </div>
-
-
-                                <div class="form-group">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-4">
-                                        <a id="addItem" class="btn btn-primary btn-flat btn-sm" href="@Url.Action("BlankEditorRow","Patient")"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Medicine</a>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">@Html.LabelFor(model => model.PatientCheckup.Prescription.ExtraNotes)</label>
-                                    <div class="col-md-4">
-                                        <div>
-                                            @Html.TextAreaFor(model => model.PatientCheckup.Prescription.ExtraNotes, new { @class = "form-control", @maxlength = "2000" })
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                    </div>
-                                </div>
-                                <!-- END FORM-->
-                            </div>
-                        </section>
-
-                        <div class="form-actions margin-top-20 margin-bottom-15">
-                            <div class="row">
-                                <div class="col-md-offset-2 col-md-9">
-                                    <button type="submit" class="btn btn-success btn-flat"><i class="fa fa-save"></i>&nbsp;&nbsp;Save</button>
-                                    <button type="reset" class="btn  btn-primary btn-flat" onclick="$(this).resetValidation()"><i class="fa fa-undo"></i>&nbsp;&nbsp;Reset</button>
-                                    @*<a class="btn btn-primary btn-flat" href="@Url.Action("Detail", "Patient", routeValues:new {id = Model.PatientCheckup.PatientId})"><i class="fa fa-ban"></i>&nbsp;&nbsp;Cancel</a>*@
-                                </div>
-                            </div>
-                        </div>
-                    }
+                                
+            <!-- /.container-fluid -->
+                   </div>
                 </div>
-            </div>
-        </div>
+        </section>
     </div>
-</section>
+</div>
 
 <script type="text/javascript">
     $(this.document).ready(function () {
+        if ('@ViewBag.SuccessMsg' != null && '@ViewBag.SuccessMsg' != '') {
+            notificationMessage('@ViewBag.SuccessMsg', 'success')
+        }
 
+        $("a.detailRow").live("click", function (e) {
 
-        jQuery('#PatientCheckup_CheckupDate').datepicker({
-            showOn: 'button',
-            format: 'mm/dd/yyyy',
-            maxDate: "+24M +10D",
-            autoclose: true,
-            pickTime: false,
-            todayHighlight: true
-        });
+            e.preventDefault();
 
-        hideShowHeaderRow();
+            var pid = $(this).data('id')
+            var postData = { "pid": pid, "mode": "del" };
+            var href = this.href;
+            var confirmMsg = 'Are you sure want to delete detail?'
+            jConfirm(confirmMsg, 'Confirm', function (r) {
+                if (r == true) {
+                    HRN.showLoader();
 
-        $("#addItem").click(function () {
-            $.ajax({
-                url: this.href,
-                cache: false,
-                success: function (html) { $("#medicineRows").append(html); $(":checkbox").uniform({ resetSelector: true }); hideShowHeaderRow(); }
+                    $.ajax({
+                        url: href,
+                        data: postData,
+                        type: 'POST',
+                        success: function (response) {
+                            if (response.IsError) {
+                                notificationMessage(response.ErrorMsg, 'danger')
+                            }
+                            else {
+                                $('#divPageBody').html(response);
+                                notificationMessage('Patient checkup detail deleted successfully.', 'success');
+                            }
+
+                            HRN.hideLoader();
+                        }
+                    });
+                }
             });
-            return false;
         });
-        $("a.deleteRow").live("click", function () {
-            $(this).parents("div.medicineRow:first").remove();
-            hideShowHeaderRow();
-            return false;
-        });
-
     });
-
-    function hideShowHeaderRow() {
-        if ($(".medicineRow").length > 0) {
-            $(".medicine-header").show();
-        }
-        else {
-            $(".medicine-header").hide();
-        }
-    }
-
-    var onBeginSubmit = function () {
-        HRN.showLoader();
-    };
-
-    function onSuccess() {
-
-        HRN.hideLoader();
-
-        if ('@ViewBag.ErrorMsg' == null || '@ViewBag.ErrorMsg' == '') {
-            //setAnimation(true);
-            //window.location.href = window.location.href.split('#')[0] + 'Admin';
-
-            @*window.location.href = '@Url.Action("Detail", "Patient", routeValues:new {id = Model.PatientCheckup.PatientId})?status=s'*@
-            //loadPage('@Url.Action("Index")?status=s');
-        }
-        else { $(":checkbox").uniform({ resetSelector: true }); }
-    }
-
-    function onFailure() {
-        console.log('failure');
-        HRN.hideLoader();
-        notificationMessage('@ViewBag.ErrorMsg', 'danger')
-    }
 
 
 </script>

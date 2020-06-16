@@ -8,18 +8,15 @@
 
 <div class="wrapper">
     <div class="content-wrapper">
-
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-
-                            <!-- /.card-header -->
                             <div class="card-body">
+                                <p>
+                                    <a title="Add new" class="btn btn-success btn-sm" asp-action="Create"><i class="fa fa-plus"></i>Create New</a>
+                                </p>
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -36,9 +33,6 @@
                                             <th>
                                                 @Html.DisplayNameFor(model => model.Phone)
                                             </th>
-                                            @*<th>
-                                                    @Html.DisplayNameFor(model => model.IsActive)
-                                                </th>*@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -59,27 +53,20 @@
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Phone)
                                                 </td>
-                                                @*<td>
-                                                        @Html.DisplayFor(modelItem => item.IsActive)
-                                                    </td>*@
                                                 <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.PatientId">Edit</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.PatientId">Details</a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.PatientId">Delete</a>
+                                                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.PatientId"><i class="fas fa-edit"></i> Edit</a> |
+                                                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.PatientId"><i class="fas fa-info-circle"></i> Details </a> |
+                                                    <a class="btn btn-primary btn-sm" asp-action="Delete" asp-route-id="@item.PatientId"><i class="fas fa-trash-alt"></i> Delete</a>
                                                 </td>
                                             </tr>
                                         }
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- /.card-body -->
                         </div>
                     </div>
-                    <!-- /.col -->
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
         </section>
     </div>
 </div>

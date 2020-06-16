@@ -1,0 +1,65 @@
+﻿@model HealthCareApp.ViewModels.PatientCheckUpViewModel
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="wrapper">
+    <div class="content-wrapper">
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <form asp-action="CheckUp">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            @*<div class="form-group">
+                                                <label asp-for="PatientCheckUp.DoctorName" class="control-label"></label>
+                                                <select asp-for="PatientCheckUp.DoctorName" asp-items="@(new SelectList(ViewBag.ListofDoctors,"FullName","FullName"))" class="form-control">
+                                                    <option>Please Select</option>
+                                                </select>
+                                                <span asp-validation-for="PatientCheckUp.DoctorName" class="text-danger"></span>
+                                            </div>*@
+
+                                            <div class="form-group">
+                                                <label asp-for="PatientCheckUp.Symptoms" class="control-label"></label>
+                                                <input asp-for="PatientCheckUp.Symptoms" class="form-control" />
+                                                <span asp-validation-for="PatientCheckUp.Symptoms" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="PatientCheckUp.Diagnosis" class="control-label"></label>
+                                                <input asp-for="PatientCheckUp.Diagnosis" class="form-control" />
+                                                <span asp-validation-for="PatientCheckUp.Diagnosis" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="PatientCheckUp.CheckupDate" class="control-label"></label>
+                                                <input asp-for="PatientCheckUp.CheckupDate" class="form-control" />
+                                                <span asp-validation-for="PatientCheckUp.CheckupDate" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" value="Create" class="btn btn-primary" />
+                                            </div>
+                                        </form>
+                                        <div>
+                                            <a asp-controller="Patient" asp-action="Index">Back to Patient Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+    </div>
+</div>

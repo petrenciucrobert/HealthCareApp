@@ -1,0 +1,61 @@
+﻿@model HealthCareApp.Models.Bed
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <form asp-action="Create">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="form-group">
+                                                <label asp-for="BedName" class="control-label"></label>
+                                                <input asp-for="BedName" class="form-control" />
+                                                <span asp-validation-for="BedName" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="BedCategory" class="control-label"></label>
+                                                <select asp-for="BedCategory" asp-items="@(new SelectList(ViewBag.ListofCategories,"BedCategoryName","BedCategoryName"))" class="form-control">
+                                                    <option>Please Select</option>
+                                                </select>
+
+                                                <span asp-validation-for="BedCategory" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Description" class="control-label"></label>
+                                                <input asp-for="Description" class="form-control" />
+                                                <span asp-validation-for="Description" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" value="Create" class="btn btn-primary" />
+                                            </div>
+                                        </form>
+                                        <div>
+                                            <a asp-action="Index">Back to List</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+    </div>
+</div>

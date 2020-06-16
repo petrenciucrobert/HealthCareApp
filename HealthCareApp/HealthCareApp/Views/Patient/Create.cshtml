@@ -7,14 +7,11 @@
 
 <div class="wrapper">
     <div class="content-wrapper">
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-
-                            <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -40,16 +37,11 @@
                                                 <input asp-for="Email" class="form-control" />
                                                 <span asp-validation-for="Email" class="text-danger"></span>
                                             </div>
-                                           
+
                                             <div class="form-group">
                                                 <label asp-for="Phone" class="control-label"></label>
                                                 <input asp-for="Phone" class="form-control" />
                                                 <span asp-validation-for="Phone" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                                                </label>
                                             </div>
                                             <div class="form-group">
                                                 <label asp-for="BirthDate" class="control-label"></label>
@@ -92,26 +84,18 @@
                                                 <input type="submit" value="Create" class="btn btn-primary" />
                                             </div>
                                         </form>
-                                        
+                                        <div>
+                                            <a asp-action="Index">Back to List</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
-                        <!-- /.card -->
                     </div>
-                    <!-- /.col -->
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
         </section>
-
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
-
+      
         @section Scripts {
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
         }

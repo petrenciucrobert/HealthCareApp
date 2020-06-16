@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HealthCareApp.Core.Repository
 {
-    public class DoctorRepository:IDoctorRepository
+    public class DoctorRepository : IDoctorRepository
     {
         private readonly AppDbContext _appDbContext;
         public DoctorRepository(AppDbContext appDbContext)
@@ -17,10 +17,29 @@ namespace HealthCareApp.Core.Repository
 
 
 
-        public IEnumerable<Doctor> AllDoctors()
+        public IEnumerable<Doctor> AllDoctors
         {
-                return _appDbContext.Doctors.ToList();
-            
+            get
+            {
+                return _appDbContext.Doctors;
+            }
+        }
+
+        public List<MedicineCategory> GetAllActive
+        {
+            get
+            {
+                return _appDbContext.MedicineCategory.ToList();
+            }
+
+        }
+
+        List<MedicineCategory> IDoctorRepository.GetAllActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public List<MedicineCategory> GetAllDoctors()
+        {
+
+            throw new NotImplementedException();
         }
     }
 }

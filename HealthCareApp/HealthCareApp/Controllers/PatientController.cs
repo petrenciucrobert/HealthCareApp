@@ -6,15 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HealthCareApp.Models;
+using HealthCareApp.ViewModels;
+using HealthCareApp.Core.IRepository;
 
 namespace HealthCareApp.Controllers
 {
     public class PatientController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IDoctorRepository _doctorRepository;
+        private readonly IPatientRepository _patientRepository;
 
-        public PatientController(AppDbContext context)
+
+        public PatientController(IDoctorRepository doctorRepository, IPatientRepository patientRepository, AppDbContext context)
         {
+            _doctorRepository = doctorRepository;
+            _patientRepository = patientRepository;
             _context = context;
         }
 
@@ -25,22 +32,23 @@ namespace HealthCareApp.Controllers
         }
 
         // GET: Patient/Details/5
-        public async Task<IActionResult> Details(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            //var patientViewModel = new PatientViewModel
-            var patient = await _context.Patients
-                .FirstOrDefaultAsync(m => m.PatientId == id);
-            if (patient == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Details(long? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    //var patientViewModel = new PatientViewModel
+        //    var patient = await _context.Patients
+        //        .FirstOrDefaultAsync(m => m.PatientId == id);
+        //    //var patient = new PatientDetailViewModel();
+        //    if (patient == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(patient);
-        }
+        //    return View(patient);
+        //}
 
         // GET: Patient/Create
         public IActionResult Create()
@@ -148,5 +156,132 @@ namespace HealthCareApp.Controllers
         {
             return _context.Patients.Any(e => e.PatientId == id);
         }
+
+
+
+
+     
+
+
+        
+        public async Task<IActionResult> Details(long id)
+        {
+
+            //if (CommonLogic.GetQueryString("status").Equals("s", StringComparison.CurrentCultureIgnoreCase))
+            //{
+            //    ViewBag.SuccessMsg = string.Format(StringConstants.RecordSave, "Checkup Detail");
+            //}
+
+            //string path = CommonLogic.GetConfigValue(StringConstants.AppConfig_ProfilePicFolderPath);
+            //string defPath = CommonLogic.GetConfigValue(StringConstants.AppConfig_DefaultProfilePic);
+
+            //string mode = CommonLogic.GetFormDataString("mode");
+            //long pid = SqlHelper.ParseNativeLong(CommonLogic.GetFormDataString("pid"));
+
+            //if (!string.IsNullOrEmpty(mode) && mode == "del" && pid > 0)
+            //{
+            //    try
+            //    {
+            //        PatientBLL.DeleteCheckupDetail(pid);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return this.Json(new { IsError = true, ErrorMsg = CommonLogic.GetExceptionMessage(ex) });
+            //    }
+            //}
+
+            var patient = new PatientViewModel();
+            ViewBag.Heading = "Patient Detail";
+
+            if (id > 0)
+            {
+                patient.PatientDetail = await _context.Patients.FirstOrDefaultAsync(m => m.PatientId == id);
+                patient.CheckupHistoryList =  _patientRepository.GetAllCheckupDetail(id);
+
+                
+            }
+
+            return View(patient);
+        }
+
+
+
+
+        [Route("Patient/CheckUp/{patientId}/{checkupId?}")]
+        public IActionResult CheckUp(long patientId, long? checkupId)
+        {
+            var patientCheckupVM = new PatientCheckUpViewModel();
+            patientCheckupVM.PatientCheckUp.PatientId = patientId;
+           
+            ViewBag.Medicines = new SelectList(_context.Medicine, "MedicineId", "MedicineName");
+
+            List<Doctor> doctorsList = new List<Doctor>();
+            doctorsList = _context.Doctors.ToList();
+            ViewBag.ListofDoctors = doctorsList;
+
+            ViewBag.Heading = "Add Patient Checkup Detail";
+
+            if (checkupId.HasValue && checkupId > 0)
+            {
+                ViewBag.Heading = "Edit Patient Checkup Detail";
+                patientCheckupVM.PatientCheckUp = _patientRepository.GetCheckupDetail(checkupId ?? 0);
+
+                if (patientCheckupVM.PatientCheckUp == null)
+                {
+                    patientCheckupVM.PatientCheckUp = new PatientCheckUp();
+                }
+            }
+
+            //return Request.IsAjaxRequest() ? (ActionResult)PartialView("Checkup", patientCheckupVM) : this.View(patientCheckupVM);
+            return View(patientCheckupVM);
+        }
+
+
+        [HttpPost]
+        [Route("Patient/CheckUp/{patientId}/{checkupId?}")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckUp(long patientId, long? checkupId, PatientCheckUpViewModel patientCheckupVM/*, List<PrescriptionDetail> medicineList*/)
+        {
+           
+                ViewBag.Heading = "Add Patient Checkup Detail";
+               // ViewBag.Medicines = new SelectList(_context.Medicine, "MedicineId", "MedicineName");
+                patientCheckupVM.PatientCheckUp.PatientId = patientId;
+                //List<Doctor> DoctorList = new List<Doctor>();
+                //DoctorList = _context.Doctors.ToList();
+                //DoctorList.Insert(0, new Doctor { DoctorId = 0, FirstName = "Select" });
+                //ViewBag.Doctors = DoctorList;
+               // patientCheckupVM.PatientCheckUp.Prescription.MedicineList = medicineList;
+
+
+                if (patientCheckupVM.PatientCheckUp.PatientCheckupId > 0)
+                {
+                    ViewBag.Heading = "Edit Patient Checkup Detail";
+
+                }
+
+                if (ModelState.IsValid)
+                {
+                    _context.Add(patientCheckupVM.PatientCheckUp);
+                    _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                //long returnId = PatientBLL.SaveCheckupDetail(patientCheckupVM);
+
+            }
+                else
+                {
+                    ViewBag.ErrorMsg = "some inputs are missing";
+                }
+            return View(patientCheckupVM);
+           // return RedirectToAction("Details");
+        }
+        
+            
+        
+        //public PartialViewResult BlankEditorRow()
+        //{
+        //    ViewBag.Medicines = new SelectList(_context.Medicine, "MedicineId", "MedicineName");
+        //    return PartialView("_MedicineRow", new PrescriptionDetail());
+        //}
     }
 }

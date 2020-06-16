@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HealthCareApp.Core.IRepository;
+using HealthCareApp.Core.Repository;
 using HealthCareApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,14 +44,18 @@ namespace HealthCareApp
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<AppDbContext>()
-                .AddDefaultUI()
-                .AddDefaultTokenProviders();
+            }).AddEntityFrameworkStores<AppDbContext>();
 
 
-
-            services.AddScoped<IPatientRepository, PatientRepository>();
-            services.AddControllersWithViews();
+            services.AddScoped<IPatientRepository,PatientRepository>();
+            services.AddScoped<IDoctorRepository,DoctorRepository>();
+            //services.AddControllersWithViews();
+            services.AddMvc(config => {
+                var policy = new AuthorizationPolicyBuilder()
+                                .RequireAuthenticatedUser()
+                                .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
             services.AddRazorPages();
         }
 
@@ -77,6 +85,7 @@ namespace HealthCareApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                
             });
         }
     }

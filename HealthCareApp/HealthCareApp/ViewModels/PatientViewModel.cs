@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HealthCareApp.ViewModels
 {
-    public class PatientDetailViewModel
+    public class PatientViewModel
     {
         public Patient PatientDetail { get; set; }
         public List<PatientCheckUp> CheckupHistoryList { get; set; }

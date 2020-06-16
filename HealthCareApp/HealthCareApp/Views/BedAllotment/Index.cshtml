@@ -1,0 +1,88 @@
+﻿@model IEnumerable<HealthCareApp.Models.BedAllotment>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper">
+    <div class="content-wrapper">
+
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>
+                                    <a title="Add new" class="btn btn-success btn-sm" asp-action="Create"><i class="fa fa-plus"></i>Add New </a>
+                                </p>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.PatientName)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.BedName)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.BedCategory)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.HospitalizationDate)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.DischargeDate)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Notes)
+                                            </th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PatientName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.BedName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.BedCategory)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.HospitalizationDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DischargeDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Notes)
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.BedAllotmentId"><i class="fas fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-primary btn-sm" asp-action="Delete" asp-route-id="@item.BedAllotmentId"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+        </section>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@model HealthCareApp.Models.LaboratoryTest
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper">
+    <div class="content-wrapper">
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <form asp-action="Edit">
+                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                    <input type="hidden" asp-for="LaboratoryTestId" />
+                                                    <div class="form-group">
+                                                        <label asp-for="LabTestCategoryName" class="control-label"></label>
+                                                        <select asp-for="LabTestCategoryName" asp-items="@(new SelectList(ViewBag.ListofLabTestCategories,"LabTestCategoryName","LabTestCategoryName"))" class="form-control">
+                                                            <option>Please Select</option>
+                                                        </select>
+
+                                                        <span asp-validation-for="LabTestCategoryName" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label asp-for="LabTestName" class="control-label"></label>
+                                                        <input asp-for="LabTestName" class="form-control" />
+                                                        <span asp-validation-for="LabTestName" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <a asp-action="Index">Back to List</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+    </div>
+</div>
+

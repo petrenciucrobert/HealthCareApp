@@ -45,24 +45,10 @@ namespace HealthCareApp.Models
         [Display(Name = "Phone")]
         public string Phone { get; set; }
 
-        //[Display(Name = "Role")]
-        //public long? RoleId { get; set; }
-
-        //public string RoleName { get; set; }
-
-        //public long CreatedBy { get; set; }
-
-        //[Display(Name = "Hospital")]
-        //public long? CompanyId { get; set; }
+     
 
         [Display(Name = "Status")]
         public bool IsActive { get; set; }
 
-        //public int TotalRecordCount { get; set; }
-
-        //public string DuplicateColumn { get; set; }
-
-        //[Display(Name = "Profile Picture")]
-        //public string ProfilePic { get; set; }
     }
 }
