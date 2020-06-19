@@ -210,8 +210,8 @@ namespace HealthCareApp.Controllers
         [Route("Patient/CheckUp/{patientId}/{checkupId?}")]
         public IActionResult CheckUp(long patientId, long? checkupId)
         {
-            var patientCheckupVM = new PatientCheckUpViewModel();
-            patientCheckupVM.PatientCheckUp.PatientId = patientId;
+            var patientCheckup = new PatientCheckUp();
+            patientCheckup.PatientId = patientId;
            
             ViewBag.Medicines = new SelectList(_context.Medicine, "MedicineId", "MedicineName");
 
@@ -224,28 +224,28 @@ namespace HealthCareApp.Controllers
             if (checkupId.HasValue && checkupId > 0)
             {
                 ViewBag.Heading = "Edit Patient Checkup Detail";
-                patientCheckupVM.PatientCheckUp = _patientRepository.GetCheckupDetail(checkupId ?? 0);
+                patientCheckup = _patientRepository.GetCheckupDetail(checkupId ?? 0);
 
-                if (patientCheckupVM.PatientCheckUp == null)
+                if (patientCheckup == null)
                 {
-                    patientCheckupVM.PatientCheckUp = new PatientCheckUp();
+                    patientCheckup = new PatientCheckUp();
                 }
             }
 
             //return Request.IsAjaxRequest() ? (ActionResult)PartialView("Checkup", patientCheckupVM) : this.View(patientCheckupVM);
-            return View(patientCheckupVM);
+            return View(patientCheckup);
         }
 
 
         [HttpPost]
         [Route("Patient/CheckUp/{patientId}/{checkupId?}")]
         [ValidateAntiForgeryToken]
-        public ActionResult CheckUp(long patientId, long? checkupId, PatientCheckUpViewModel patientCheckupVM/*, List<PrescriptionDetail> medicineList*/)
+        public ActionResult CheckUp(long patientId, long? checkupId, PatientCheckUp patientCheckup/*, List<PrescriptionDetail> medicineList*/)
         {
            
                 ViewBag.Heading = "Add Patient Checkup Detail";
                // ViewBag.Medicines = new SelectList(_context.Medicine, "MedicineId", "MedicineName");
-                patientCheckupVM.PatientCheckUp.PatientId = patientId;
+                patientCheckup.PatientId = patientId;
                 //List<Doctor> DoctorList = new List<Doctor>();
                 //DoctorList = _context.Doctors.ToList();
                 //DoctorList.Insert(0, new Doctor { DoctorId = 0, FirstName = "Select" });
@@ -253,7 +253,7 @@ namespace HealthCareApp.Controllers
                // patientCheckupVM.PatientCheckUp.Prescription.MedicineList = medicineList;
 
 
-                if (patientCheckupVM.PatientCheckUp.PatientCheckupId > 0)
+                if (patientCheckup.PatientCheckupId > 0)
                 {
                     ViewBag.Heading = "Edit Patient Checkup Detail";
 
@@ -261,7 +261,7 @@ namespace HealthCareApp.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    _context.Add(patientCheckupVM.PatientCheckUp);
+                    _context.Add(patientCheckup);
                     _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
                 //return RedirectToAction(nameof(Index));
@@ -272,7 +272,7 @@ namespace HealthCareApp.Controllers
                 {
                     ViewBag.ErrorMsg = "some inputs are missing";
                 }
-            return View(patientCheckupVM);
+            return View(patientCheckup);
            // return RedirectToAction("Details");
         }
         

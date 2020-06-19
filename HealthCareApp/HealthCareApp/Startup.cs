@@ -35,8 +35,6 @@ namespace HealthCareApp
                 builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
             }));
 
-            //services.AddDefaultIdentity<IdentityUser>()
-            //.AddEntityFrameworkStores<AppDbContext>();
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 4;
@@ -44,12 +42,16 @@ namespace HealthCareApp
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = false;
+
             }).AddEntityFrameworkStores<AppDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+            });
 
             services.AddScoped<IPatientRepository,PatientRepository>();
             services.AddScoped<IDoctorRepository,DoctorRepository>();
-            //services.AddControllersWithViews();
             services.AddMvc(config => {
                 var policy = new AuthorizationPolicyBuilder()
                                 .RequireAuthenticatedUser()
@@ -60,6 +62,7 @@ namespace HealthCareApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -69,7 +72,6 @@ namespace HealthCareApp
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();

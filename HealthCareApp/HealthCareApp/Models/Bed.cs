@@ -21,6 +21,7 @@ namespace HealthCareApp.Models
         public string BedCategory { get; set; }
 
         public string Description { get; set; }
+        
 
     }
 }

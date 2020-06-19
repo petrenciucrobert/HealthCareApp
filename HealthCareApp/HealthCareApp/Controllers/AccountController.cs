@@ -21,7 +21,7 @@ namespace HealthCareApp.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        // GET: /<controller>/
+       
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
@@ -76,6 +76,7 @@ namespace HealthCareApp.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
