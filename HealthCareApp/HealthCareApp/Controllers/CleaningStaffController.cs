@@ -18,21 +18,19 @@ namespace HealthCareApp.Controllers
             _context = context;
         }
 
-        // GET: CleaningStaff
+       
         public async Task<IActionResult> Index()
         {
             return View(await _context.CleaningStaff.ToListAsync());
         }
 
-        // GET: CleaningStaff/Create
+        
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: CleaningStaff/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CleaningStaffId,FirstName,MiddleName,LastName,Phone")] CleaningStaff cleaningStaff)
@@ -46,7 +44,7 @@ namespace HealthCareApp.Controllers
             return View(cleaningStaff);
         }
 
-        // GET: CleaningStaff/Edit/5
+       
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -62,9 +60,7 @@ namespace HealthCareApp.Controllers
             return View(cleaningStaff);
         }
 
-        // POST: CleaningStaff/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("CleaningStaffId,FirstName,MiddleName,LastName,Phone")] CleaningStaff cleaningStaff)
@@ -97,7 +93,7 @@ namespace HealthCareApp.Controllers
             return View(cleaningStaff);
         }
 
-        // GET: CleaningStaff/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -115,7 +111,7 @@ namespace HealthCareApp.Controllers
             return View(cleaningStaff);
         }
 
-        // POST: CleaningStaff/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)

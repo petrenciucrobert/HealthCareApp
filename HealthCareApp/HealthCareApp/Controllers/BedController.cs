@@ -18,12 +18,12 @@ namespace HealthCareApp.Controllers
             _context = context;
         }
 
-        // GET: Bed
+       
         public async Task<IActionResult> Index()
         {
             return View(await _context.Bed.ToListAsync());
         }
-        // GET: Bed/Create
+        
         public IActionResult Create()
         {
             List<BedCategory> bedCategoryList = new List<BedCategory>();
@@ -32,9 +32,7 @@ namespace HealthCareApp.Controllers
             return View();
         }
 
-        // POST: Bed/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BedId,BedName,BedCategoryId,BedCategory,Description")] Bed bed)
@@ -48,7 +46,7 @@ namespace HealthCareApp.Controllers
             return View(bed);
         }
 
-        // GET: Bed/Edit/5
+        
         public async Task<IActionResult> Edit(long? id)
         {
             List<BedCategory> bedCategoryList = new List<BedCategory>();
@@ -67,9 +65,7 @@ namespace HealthCareApp.Controllers
             return View(bed);
         }
 
-        // POST: Bed/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("BedId,BedName,BedCategoryId,BedCategory,Description")] Bed bed)
@@ -102,7 +98,7 @@ namespace HealthCareApp.Controllers
             return View(bed);
         }
 
-        // GET: Bed/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -120,7 +116,7 @@ namespace HealthCareApp.Controllers
             return View(bed);
         }
 
-        // POST: Bed/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)

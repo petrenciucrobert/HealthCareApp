@@ -15,7 +15,6 @@ namespace HealthCareApp.Models
 
         public long MedicineId { get; set; }
 
-        //public long CompanyId { get; set; }
 
         [Required]
         [Display(Name = "Medicine Name")]
@@ -26,9 +25,7 @@ namespace HealthCareApp.Models
         [Display(Name = "Medicine Category")]
         public long MedicineCategoryId { get; set; }
         public string MedicineCategoryName { get; set; }
-        //public int AvailableQuantity { get; set; }
-        //public long UnitId { get; set; }
-
+   
         [Display(Name = "Status")]
         public bool IsActive { get; set; }
        

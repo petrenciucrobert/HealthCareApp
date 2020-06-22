@@ -27,7 +27,7 @@ namespace HealthCareApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+      
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HealthCareAppDbConnection"), builder =>
@@ -51,7 +51,6 @@ namespace HealthCareApp
             });
 
             services.AddScoped<IPatientRepository,PatientRepository>();
-            services.AddScoped<IDoctorRepository,DoctorRepository>();
             services.AddMvc(config => {
                 var policy = new AuthorizationPolicyBuilder()
                                 .RequireAuthenticatedUser()
@@ -61,7 +60,6 @@ namespace HealthCareApp
             services.AddRazorPages();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

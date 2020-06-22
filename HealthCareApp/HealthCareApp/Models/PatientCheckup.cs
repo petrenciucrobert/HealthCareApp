@@ -16,9 +16,6 @@ namespace HealthCareApp.Models
         [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? CheckupDate { get; set; }
 
-        
-        //public string DoctorName { get; set; }
-
         [Required]
         public string Symptoms { get; set; }
 

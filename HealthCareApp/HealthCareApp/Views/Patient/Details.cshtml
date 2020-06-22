@@ -54,13 +54,12 @@
                                                 <h3 class="card-title">Checkup History</h3>
                                                 <a title="Add new" class="btn btn-success float-right btn-sm" asp-controller="Patient" asp-action="CheckUp" asp-route-patientId="@Model.PatientDetail.PatientId"><i class="fa fa-plus"></i>  Add New Checkup </a>
 
-                                                @*<a title="Add new" class="btn btn-success pull-right btn-sm" href="@Url.Action("CheckUp", "Patient", routeValues: new { patientId = Model.PatientDetail.PatientId  })"><i class="fa fa-plus"></i>  Add New Checkup </a>*@
+                                              
                                             </div>
-                                            <!-- /.box-header -->
                                             <div class="card-body">
                                                 
                                                 <div class="tab-pane" id="timeline">
-                                                    <!-- The timeline -->
+                                                    
                                                     
                                                     @if (Model.CheckupHistoryList != null && Model.CheckupHistoryList.Count > 0)
                                                     {
@@ -69,22 +68,17 @@
 
                                                             @foreach (var each in Model.CheckupHistoryList)
                                                             {
-                                                                <!-- timeline time label -->
+                                                                
                                                                 <div class="time-label">
                                                                     <span class="bg-red">
                                                                         @(each.CheckupDate.HasValue ? each.CheckupDate.Value.ToString("dd MMM yyyy") : "")
                                                                     </span>
-                                                                    @*<span class="bg-blue">
-                                                                        Doctor : @each.DoctorName
-                                                                    </span>*@
+                                                                  
                                                                     <span class="pull-right margin-r-10">
-                                                                        @*<a class="btn btn-primary btn-sm" href="@Url.Action("CheckUp", "Patient", routeValues: new { patientId = Model.PatientDetail.PatientId, checkupId = each.PatientCheckupId})"><i class="fa fa-pencil"></i></a>
-                                                                        <a class="btn btn-danger btn-sm detailRow" href="@Url.Action("Detail", "Patient", routeValues: new { Id = Model.PatientDetail.PatientId})" data-id="@each.PatientCheckupId"><i class="fa fa-trash-o"></i></a>*@
+                                                                       
 
                                                                     </span>
                                                                 </div>
-                                                                <!-- end timeline time label -->
-                                                                <!-- timeline item : Symptoms -->
                                                                 <div>
                                                                     <i class="fas fa-user bg-info"></i>
                                                                     <div class="timeline-item">
@@ -95,8 +89,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <!-- END timeline item : Symptoms-->
-                                                                <!-- timeline item : Diagnosis-->
                                                                 <div>
                                                                     <i class="fas fa-user bg-info"></i>
                                                                     <div class="timeline-item">
@@ -109,55 +101,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <!-- End timeline item : Diagnosis-->
-                                                                <!-- timeline item : Prescription-->
-                                                                @*if (each.Prescription != null)
-                                                                {
-                                                                    <div>
-                                                                        <i class="fa fa-flask bg-yellow"></i>
-                                                                        <div class="timeline-item">
-                                                                            <h3 class="timeline-header">
-                                                                                <a>Prescription</a>
-                                                                            </h3>
-                                                                            @if (each.Prescription.MedicineList != null && each.Prescription.MedicineList.Count > 0)
-                                                                            {
-                                                                                <div class="timeline-body">
-                                                                                    <table class="table">
-                                                                                        <tr>
-                                                                                            <th style="width: 10px">#</th>
-                                                                                            <th>Medicine</th>
-                                                                                            <th>No.Of Days</th>
-                                                                                            <th>When to Take</th>
-                                                                                            <th style="width: 100px">Before Meal?</th>
-                                                                                        </tr>
-                                                                                        @{
-                                                                                            int i = 0;
-                                                                                            foreach (var medicine in each.Prescription.MedicineList)
-                                                                                            {
-                                                                                                i = i + 1;
-
-                                                                                                <tr>
-                                                                                                    <td>@i.</td>
-                                                                                                    <td>@medicine.MedicineName</td>
-                                                                                                    <td>@medicine.NoOfDays</td>
-                                                                                                    <td>@medicine.WhenToTake</td>
-                                                                                                    <td>@(medicine.IsBeforeMeal ? "Yes" : "No")</td>
-                                                                                                </tr>
-                                                                                            }
-                                                                                        }
-                                                                                    </table>
-                                                                                </div>
-                                                                            }
-
-                                                                            <div class="timeline-body">
-                                                                                <b>Extra Note :</b> @each.Prescription.ExtraNotes
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                }*@
-                                                                <!-- End timeline item : Prescription-->
                                                             }
 
                                                             
@@ -174,23 +117,14 @@
                                                 </div>
                                         </div>
                                     </div>
-                                    <!-- /.col -->
-                                    @*<div class="form-actions">
-                                        <div class="row text-center">
-                                            <div class="col-md-12 ">
-                                                    <a class="btn btn-primary btn-flat" href="@Url.Action("Details", "Patient")"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;&nbsp;Back</a>
-                                                </div>
-                                        </div>
-                                    </div>*@
-                                
-            <!-- /.container-fluid -->
+                                    
                    </div>
                 </div>
         </section>
     </div>
 </div>
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(this.document).ready(function () {
         if ('@ViewBag.SuccessMsg' != null && '@ViewBag.SuccessMsg' != '') {
             notificationMessage('@ViewBag.SuccessMsg', 'success')
@@ -230,4 +164,4 @@
     });
 
 
-</script>
+</script>*@

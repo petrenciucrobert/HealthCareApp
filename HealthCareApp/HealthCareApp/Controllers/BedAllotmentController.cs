@@ -18,13 +18,13 @@ namespace HealthCareApp.Controllers
             _context = context;
         }
 
-        // GET: BedAllotment
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.BedAllotment.ToListAsync());
         }
 
-        // GET: BedAllotment/Details/5
+        
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -42,7 +42,7 @@ namespace HealthCareApp.Controllers
             return View(bedAllotment);
         }
 
-        // GET: BedAllotment/Create
+        
         public IActionResult Create()
         {
             List<Patient> patientsList = new List<Patient>();
@@ -59,9 +59,7 @@ namespace HealthCareApp.Controllers
             return View();
         }
 
-        // POST: BedAllotment/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BedAllotmentId,PatientName,BedName,BedCategory,HospitalizationDate,DischargeDate,Notes")] BedAllotment bedAllotment)
@@ -75,7 +73,7 @@ namespace HealthCareApp.Controllers
             return View(bedAllotment);
         }
 
-        // GET: BedAllotment/Edit/5
+        
         public async Task<IActionResult> Edit(long? id)
         {
             List<Patient> patientsList = new List<Patient>();
@@ -102,9 +100,7 @@ namespace HealthCareApp.Controllers
             return View(bedAllotment);
         }
 
-        // POST: BedAllotment/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("BedAllotmentId,PatientName,BedName,BedCategory,HospitalizationDate,DischargeDate,Notes")] BedAllotment bedAllotment)
@@ -137,7 +133,7 @@ namespace HealthCareApp.Controllers
             return View(bedAllotment);
         }
 
-        // GET: BedAllotment/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -155,7 +151,7 @@ namespace HealthCareApp.Controllers
             return View(bedAllotment);
         }
 
-        // POST: BedAllotment/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)

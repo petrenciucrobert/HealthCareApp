@@ -18,22 +18,20 @@ namespace HealthCareApp.Controllers
             _context = context;
         }
 
-        // GET: ExpenseCategory
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.ExpenseCategory.ToListAsync());
         }
 
 
-        // GET: ExpenseCategory/Create
+       
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ExpenseCategory/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ExpenseCategoryId,ExpenseCategoryName,Description")] ExpenseCategory expenseCategory)
@@ -47,7 +45,6 @@ namespace HealthCareApp.Controllers
             return View(expenseCategory);
         }
 
-        // GET: ExpenseCategory/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -63,9 +60,7 @@ namespace HealthCareApp.Controllers
             return View(expenseCategory);
         }
 
-        // POST: ExpenseCategory/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("ExpenseCategoryId,ExpenseCategoryName,Description")] ExpenseCategory expenseCategory)
@@ -98,7 +93,7 @@ namespace HealthCareApp.Controllers
             return View(expenseCategory);
         }
 
-        // GET: ExpenseCategory/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -116,7 +111,7 @@ namespace HealthCareApp.Controllers
             return View(expenseCategory);
         }
 
-        // POST: ExpenseCategory/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)

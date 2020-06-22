@@ -18,21 +18,19 @@ namespace HealthCareApp.Controllers
             _context = context;
         }
 
-        // GET: Receptionist
+       
         public async Task<IActionResult> Index()
         {
             return View(await _context.Receptionist.ToListAsync());
         }
 
-        // GET: Receptionist/Create
+        
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Receptionist/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReceptionistId,FirstName,MiddleName,LastName,Email,Phone")] Receptionist receptionist)
@@ -46,7 +44,7 @@ namespace HealthCareApp.Controllers
             return View(receptionist);
         }
 
-        // GET: Receptionist/Edit/5
+        
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -62,9 +60,7 @@ namespace HealthCareApp.Controllers
             return View(receptionist);
         }
 
-        // POST: Receptionist/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("ReceptionistId,FirstName,MiddleName,LastName,Email,Phone")] Receptionist receptionist)
@@ -97,7 +93,7 @@ namespace HealthCareApp.Controllers
             return View(receptionist);
         }
 
-        // GET: Receptionist/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -115,7 +111,7 @@ namespace HealthCareApp.Controllers
             return View(receptionist);
         }
 
-        // POST: Receptionist/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)

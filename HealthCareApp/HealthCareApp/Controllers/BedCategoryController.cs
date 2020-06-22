@@ -18,24 +18,18 @@ namespace HealthCareApp.Controllers
             _context = context;
         }
 
-        // GET: BedCategory
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.BedCategory.ToListAsync());
         }
 
-        // GET: BedCategory/Details/5
-     
-
-        // GET: BedCategory/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: BedCategory/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BedCategoryId,BedCategoryName,Description,IsActive")] BedCategory bedCategory)
@@ -49,7 +43,7 @@ namespace HealthCareApp.Controllers
             return View(bedCategory);
         }
 
-        // GET: BedCategory/Edit/5
+        
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -65,9 +59,7 @@ namespace HealthCareApp.Controllers
             return View(bedCategory);
         }
 
-        // POST: BedCategory/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("BedCategoryId,BedCategoryName,Description,IsActive")] BedCategory bedCategory)
@@ -100,7 +92,7 @@ namespace HealthCareApp.Controllers
             return View(bedCategory);
         }
 
-        // GET: BedCategory/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -118,7 +110,7 @@ namespace HealthCareApp.Controllers
             return View(bedCategory);
         }
 
-        // POST: BedCategory/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)

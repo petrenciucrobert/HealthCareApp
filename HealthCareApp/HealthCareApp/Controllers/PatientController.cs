@@ -14,51 +14,29 @@ namespace HealthCareApp.Controllers
     public class PatientController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IDoctorRepository _doctorRepository;
+        //private readonly IDoctorRepository _doctorRepository;
         private readonly IPatientRepository _patientRepository;
 
 
-        public PatientController(IDoctorRepository doctorRepository, IPatientRepository patientRepository, AppDbContext context)
+        public PatientController(/*IDoctorRepository doctorRepository,*/ IPatientRepository patientRepository, AppDbContext context)
         {
-            _doctorRepository = doctorRepository;
+            //_doctorRepository = doctorRepository;
             _patientRepository = patientRepository;
             _context = context;
         }
 
-        // GET: Patient
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.Patients.ToListAsync());
         }
 
-        // GET: Patient/Details/5
-        //public async Task<IActionResult> Details(long? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    //var patientViewModel = new PatientViewModel
-        //    var patient = await _context.Patients
-        //        .FirstOrDefaultAsync(m => m.PatientId == id);
-        //    //var patient = new PatientDetailViewModel();
-        //    if (patient == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(patient);
-        //}
-
-        // GET: Patient/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Patient/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PatientId,FirstName,MiddleName,LastName,Email,Password,Phone,IsActive,BirthDate,Gender,BloodGroup,Address")] Patient patient)
@@ -72,7 +50,7 @@ namespace HealthCareApp.Controllers
             return View(patient);
         }
 
-        // GET: Patient/Edit/5
+       
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -88,9 +66,7 @@ namespace HealthCareApp.Controllers
             return View(patient);
         }
 
-        // POST: Patient/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("PatientId,FirstName,MiddleName,LastName,Email,Password,Phone,IsActive,BirthDate,Gender,BloodGroup,Address")] Patient patient)
@@ -123,7 +99,7 @@ namespace HealthCareApp.Controllers
             return View(patient);
         }
 
-        // GET: Patient/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -141,7 +117,7 @@ namespace HealthCareApp.Controllers
             return View(patient);
         }
 
-        // POST: Patient/Delete/5
+       
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
@@ -166,30 +142,6 @@ namespace HealthCareApp.Controllers
         
         public async Task<IActionResult> Details(long id)
         {
-
-            //if (CommonLogic.GetQueryString("status").Equals("s", StringComparison.CurrentCultureIgnoreCase))
-            //{
-            //    ViewBag.SuccessMsg = string.Format(StringConstants.RecordSave, "Checkup Detail");
-            //}
-
-            //string path = CommonLogic.GetConfigValue(StringConstants.AppConfig_ProfilePicFolderPath);
-            //string defPath = CommonLogic.GetConfigValue(StringConstants.AppConfig_DefaultProfilePic);
-
-            //string mode = CommonLogic.GetFormDataString("mode");
-            //long pid = SqlHelper.ParseNativeLong(CommonLogic.GetFormDataString("pid"));
-
-            //if (!string.IsNullOrEmpty(mode) && mode == "del" && pid > 0)
-            //{
-            //    try
-            //    {
-            //        PatientBLL.DeleteCheckupDetail(pid);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        return this.Json(new { IsError = true, ErrorMsg = CommonLogic.GetExceptionMessage(ex) });
-            //    }
-            //}
-
             var patient = new PatientViewModel();
             ViewBag.Heading = "Patient Detail";
 
@@ -232,7 +184,7 @@ namespace HealthCareApp.Controllers
                 }
             }
 
-            //return Request.IsAjaxRequest() ? (ActionResult)PartialView("Checkup", patientCheckupVM) : this.View(patientCheckupVM);
+            
             return View(patientCheckup);
         }
 
@@ -240,18 +192,13 @@ namespace HealthCareApp.Controllers
         [HttpPost]
         [Route("Patient/CheckUp/{patientId}/{checkupId?}")]
         [ValidateAntiForgeryToken]
-        public ActionResult CheckUp(long patientId, long? checkupId, PatientCheckUp patientCheckup/*, List<PrescriptionDetail> medicineList*/)
+        public ActionResult CheckUp(long patientId, long? checkupId, PatientCheckUp patientCheckup)
         {
            
                 ViewBag.Heading = "Add Patient Checkup Detail";
-               // ViewBag.Medicines = new SelectList(_context.Medicine, "MedicineId", "MedicineName");
+              
                 patientCheckup.PatientId = patientId;
-                //List<Doctor> DoctorList = new List<Doctor>();
-                //DoctorList = _context.Doctors.ToList();
-                //DoctorList.Insert(0, new Doctor { DoctorId = 0, FirstName = "Select" });
-                //ViewBag.Doctors = DoctorList;
-               // patientCheckupVM.PatientCheckUp.Prescription.MedicineList = medicineList;
-
+                
 
                 if (patientCheckup.PatientCheckupId > 0)
                 {
@@ -264,24 +211,19 @@ namespace HealthCareApp.Controllers
                     _context.Add(patientCheckup);
                     _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
-                //return RedirectToAction(nameof(Index));
-                //long returnId = PatientBLL.SaveCheckupDetail(patientCheckupVM);
+                
 
-            }
+                }
                 else
                 {
                     ViewBag.ErrorMsg = "some inputs are missing";
                 }
             return View(patientCheckup);
-           // return RedirectToAction("Details");
+           
         }
         
             
         
-        //public PartialViewResult BlankEditorRow()
-        //{
-        //    ViewBag.Medicines = new SelectList(_context.Medicine, "MedicineId", "MedicineName");
-        //    return PartialView("_MedicineRow", new PrescriptionDetail());
-        //}
+        
     }
 }

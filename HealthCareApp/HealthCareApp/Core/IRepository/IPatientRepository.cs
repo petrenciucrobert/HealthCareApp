@@ -11,13 +11,8 @@ namespace HealthCareApp.Core.IRepository
     {
         IEnumerable<Patient> AllPatients { get; }
         Patient GetPatientById(long PatientId);
-        //IEnumerable<PatientCheckUp> GetAllCheckupDetail(long patientId);
         public List<PatientCheckUp> GetAllCheckupDetail(long patientId);
         public PatientCheckUp GetCheckupDetail(long patientCheckupId);
-        //public List<PrescriptionDetail> GetAllPrescriptionDetail(long patientId);
-        //public Prescription GetPrescriptionDetailByCheckupId(long patientCheckupId);
-
-        //public long SaveCheckupDetail(PatientCheckUpViewModel patientCheckupVM);
 
 
     }

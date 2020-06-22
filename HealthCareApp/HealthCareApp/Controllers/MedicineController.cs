@@ -19,13 +19,13 @@ namespace HealthCareApp.Controllers
             _context = context;
         }
 
-        // GET: Medicine
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.Medicine.ToListAsync());
         }
 
-        // GET: Medicine/Create
+        
         public IActionResult Create()
         {
             List <MedicineCategory> medicineCategoryList = new List<MedicineCategory>();
@@ -34,9 +34,7 @@ namespace HealthCareApp.Controllers
             return View();
         }
 
-        // POST: Medicine/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MedicineId,MedicineName,Description,MedicineCategoryId,MedicineCategoryName,IsActive")] Medicine medicine)
@@ -50,7 +48,7 @@ namespace HealthCareApp.Controllers
             return View(medicine);
         }
 
-        // GET: Medicine/Edit/5
+        
         public async Task<IActionResult> Edit(long? id)
         {
             List<MedicineCategory> medicineCategoryList = new List<MedicineCategory>();
@@ -69,9 +67,7 @@ namespace HealthCareApp.Controllers
             return View(medicine);
         }
 
-        // POST: Medicine/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("MedicineId,MedicineName,Description,MedicineCategoryId,MedicineCategoryName,IsActive")] Medicine medicine)
@@ -104,7 +100,7 @@ namespace HealthCareApp.Controllers
             return View(medicine);
         }
 
-        // GET: Medicine/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -122,7 +118,7 @@ namespace HealthCareApp.Controllers
             return View(medicine);
         }
 
-        // POST: Medicine/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)

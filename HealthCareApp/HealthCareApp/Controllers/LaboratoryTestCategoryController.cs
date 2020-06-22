@@ -18,13 +18,13 @@ namespace HealthCareApp.Controllers
             _context = context;
         }
 
-        // GET: LaboratoryTestCategory
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.LaboratoryTestCategory.ToListAsync());
         }
 
-        // GET: LaboratoryTestCategory/Details/5
+        
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -42,15 +42,13 @@ namespace HealthCareApp.Controllers
             return View(laboratoryTestCategory);
         }
 
-        // GET: LaboratoryTestCategory/Create
+        
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: LaboratoryTestCategory/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("LaboratoryTestCategoryId,LabTestCategoryName,Description")] LaboratoryTestCategory laboratoryTestCategory)
@@ -64,7 +62,7 @@ namespace HealthCareApp.Controllers
             return View(laboratoryTestCategory);
         }
 
-        // GET: LaboratoryTestCategory/Edit/5
+        
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -80,9 +78,7 @@ namespace HealthCareApp.Controllers
             return View(laboratoryTestCategory);
         }
 
-        // POST: LaboratoryTestCategory/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("LaboratoryTestCategoryId,LabTestCategoryName,Description")] LaboratoryTestCategory laboratoryTestCategory)
@@ -115,7 +111,7 @@ namespace HealthCareApp.Controllers
             return View(laboratoryTestCategory);
         }
 
-        // GET: LaboratoryTestCategory/Delete/5
+        
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -133,7 +129,7 @@ namespace HealthCareApp.Controllers
             return View(laboratoryTestCategory);
         }
 
-        // POST: LaboratoryTestCategory/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
